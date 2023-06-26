@@ -4,7 +4,7 @@ const About = () => {
   return (
     <>
       <div className="text-[#f6f6f6] bg-[#161616]">
-        <div className="flex flex-row font-clash p-3 justify-between">
+        <div className="flex flex-col font-clash p-3 sm:flex-row justify-between">
           <p>MON - SAT: 8 AM - 7 PM</p>
           <p>8944 BURTON WAY, Lahore, CA, 90211</p>
         </div>

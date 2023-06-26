@@ -16,11 +16,11 @@ const Contact = () => {
         </h1>
 
         <div className="text-center font-clash mt-6">Message me</div>
-        <h1 className="text-center font-clash my-3 text-3xl font-medium">
+        <h1 className="text-center font-clash my-3 sm:text-xl text-3xl font-medium">
           contact@saeedazeem.com
         </h1>
         <div className="text-center font-clash">call me</div>
-        <h1 className="text-center font-clash my-3 text-3xl font-medium">
+        <h1 className="text-center font-clash my-3 text-3xl sm:text-xl font-medium">
           (+92)-324-1064796
         </h1>
 
