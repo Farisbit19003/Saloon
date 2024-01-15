@@ -29,7 +29,7 @@ const Header = () => {
         </div>
         {/* Sub-menu */}
         {isSubMenuVisible && (
-          <div className="absolute top-full left-0 mt-2 bg-[#333] p-2">
+          <div className=" top-full left-0 mt-2 bg-[#333] p-2">
             {selectedMenu === 'Services' && (
               <>
                 <p className="text-[#f6f6f6]">Haircut</p>
