@@ -28,17 +28,11 @@ const Header = () => {
     },
     {
       title: "Packages",
-      children: [
-        { title: "Grooming Package" },
-        { title: "VIP Package" },
-      ],
+      children: [{ title: "Grooming Package" }, { title: "VIP Package" }],
     },
     {
       title: "Contact Us",
-      children: [
-        { title: "Email" },
-        { title: "Mobile" },
-      ],
+      children: [{ title: "Email" }, { title: "Mobile" }],
     },
   ];
 
@@ -53,10 +47,28 @@ const Header = () => {
   return (
     <>
       <div className="bg-[#161616] flex p-4 justify-between text-center">
-        <a href="#" className="text-[#f6f6f6] font-aktura text-5xl">SA</a>
+        <a href="#" className="text-[#f6f6f6] font-aktura text-5xl">
+          SA
+        </a>
         <div className="flex items-center">
           <div className="flex text-[#f6f6f6] space-x-4">
-            {renderMenuItems(menuData)}
+            <div className="clear-fix">
+              <div className="container">
+                <nav
+                  id="site-navigation"
+                  className="main-navigation"
+                  role="navigation"
+                >
+                  <div className="wrap-menu-content">
+                    <div className="menu-course-outline-container">
+                      <ul id="primary-menu" className="menu">
+                        {renderMenuItems(menuData)}
+                      </ul>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -66,20 +78,16 @@ const Header = () => {
 
 const MenuItem = ({ title, children }) => {
   return (
-    <div className="group relative clear-fix">
-      <ul className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-165">
-        <a href="#" className="cursor-pointer text-xl py-2 px-4 block hover:bg-[#333]">
-          {title}
-        </a>
-        <li className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-has-children menu-item-170">
-          {children && (
-            <div className="absolute hidden space-y-2 mt-2 bg-[#161616] text-[#f6f6f6] rounded-md shadow-lg group-hover:block">
-              {children}
-            </div>
-          )}
-        </li>
-      </ul>
-    </div>
+    <li className="menu-item">
+      <a href="#"  className="cursor-pointer py-2 px-4 block hover:bg-[#333]">
+        {title}
+      </a>
+      {children && (
+        <ul className="sub-menu">
+          {children}
+        </ul>
+      )}
+    </li>
   );
 };
 
