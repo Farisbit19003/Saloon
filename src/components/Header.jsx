@@ -49,7 +49,7 @@ const Header = () => {
 
   const renderMenuItems = (items) => {
     return items.map((item, index) => (
-      <MenuItem key={index} title={item.title} link={item.link}>
+      <MenuItem key={index} title={item.title} link={item.link}  id={`menu-${index}`}>
         {item.children && renderMenuItems(item.children)}
       </MenuItem>
     ));
@@ -71,11 +71,13 @@ const Header = () => {
   );
 };
 
-const MenuItem = ({ title, link, children }) => {
+const MenuItem = ({ title, link,id, children }) => {
   return (
     <div className="group relative">
       <ul>
         <a
+                  id={id}
+
           href={link}
           className="cursor-pointer text-2xl py-2 px-4 block hover:bg-[#333]"
         >
