@@ -1,15 +1,62 @@
 import React from "react";
 
 const Header = () => {
+  const menuData = [
+    {
+      title: "Haircuts",
+      children: [
+        { title: "Classic Haircut" },
+        { title: "Modern Styles" },
+        { title: "Beard Trimming" },
+      ],
+    },
+    {
+      title: "Coloring",
+      children: [
+        { title: "Full Color" },
+        { title: "Highlights" },
+        { title: "Gray Blending" },
+      ],
+    },
+    {
+      title: "Facial",
+      children: [
+        { title: "Deep Cleanse" },
+        { title: "Anti-Aging" },
+        { title: "Moisturizing" },
+      ],
+    },
+    {
+      title: "Packages",
+      children: [
+        { title: "Grooming Package" },
+        { title: "VIP Package" },
+      ],
+    },
+    {
+      title: "Contact Us",
+      children: [
+        { title: "Email" },
+        { title: "Mobile" },
+      ],
+    },
+  ];
+
+  const renderMenuItems = (items) => {
+    return items.map((item, index) => (
+      <MenuItem key={index} title={item.title}>
+        {item.children && renderMenuItems(item.children)}
+      </MenuItem>
+    ));
+  };
+
   return (
     <>
       <div className="bg-[#161616] flex p-4 justify-between text-center">
-        <p className="text-[#f6f6f6] font-aktura text-5xl">SA</p>
+        <a href="#" className="text-[#f6f6f6] font-aktura text-5xl">SA</a>
         <div className="flex items-center">
           <div className="flex text-[#f6f6f6] space-x-4">
-            <MenuItem title="HOME" subMenuItems={['The Vice Chancellor', 'The Director', 'Mission Statement', 'Establishment', 'Academic Regulations', 'Overview of the University']} />
-            <MenuItem title="DEPARTMENTS" subMenuItems={['Administrative Sciences', 'Result – BSM', 'Business Administration', 'BBA Course Roadmap', 'Result – BBA', 'Commerce', 'Bcom Course Roadmap', 'Result – Bcom', 'Information Technology', 'Overview', 'CS Course Roadmap', 'Course Outline', 'Project Office', 'Result – IT Department', 'Law', 'Result – LLb', 'Code of Conduct', 'Department of English', 'Teachers of All Departments']} />
-            {/* Add other menu items here */}
+            {renderMenuItems(menuData)}
           </div>
         </div>
       </div>
@@ -17,29 +64,23 @@ const Header = () => {
   );
 };
 
-const MenuItem = ({ title, subMenuItems }) => {
+const MenuItem = ({ title, children }) => {
   return (
-    <div className="group relative">
-      <ul>
-        <p className="cursor-pointer font-aktura text-2xl py-2 px-4 block hover:bg-[#333]">
+    <div className="group relative clear-fix">
+      <ul className="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-165">
+        <a href="#" className="cursor-pointer text-xl py-2 px-4 block hover:bg-[#333]">
           {title}
-        </p>
-        <li>
-          {subMenuItems && (
+        </a>
+        <li className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-has-children menu-item-170">
+          {children && (
             <div className="absolute hidden space-y-2 mt-2 bg-[#161616] text-[#f6f6f6] rounded-md shadow-lg group-hover:block">
-              {subMenuItems.map((item, index) => (
-                <SubMenuItem key={index} title={item} />
-              ))}
+              {children}
             </div>
           )}
         </li>
       </ul>
     </div>
   );
-};
-
-const SubMenuItem = ({ title }) => {
-  return <p className="block py-2 px-4 hover:bg-[#333]">{title}</p>;
 };
 
 export default Header;
