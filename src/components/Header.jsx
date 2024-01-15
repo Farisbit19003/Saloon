@@ -40,14 +40,20 @@ const Header = () => {
 const MenuItem = ({ title, children }) => {
   return (
     <div className="group relative">
-      <p className="cursor-pointer font-aktura text-2xl py-2 px-4 block hover:bg-[#333]">
-        {title}
-      </p>
-      {children && (
-        <div className="absolute hidden space-y-2 mt-2 bg-[#161616] text-[#f6f6f6] rounded-md shadow-lg group-hover:block">
-          {children}
-        </div>
-      )}
+      <ul>
+        {" "}
+        <p className="cursor-pointer font-aktura text-2xl py-2 px-4 block hover:bg-[#333]">
+          {title}
+        </p>
+        <li>
+          {" "}
+          {children && (
+            <div className="absolute hidden space-y-2 mt-2 bg-[#161616] text-[#f6f6f6] rounded-md shadow-lg group-hover:block">
+              {children}
+            </div>
+          )}
+        </li>
+      </ul>
     </div>
   );
 };
