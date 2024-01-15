@@ -1,78 +1,59 @@
-import React, { useState } from 'react';
+import React from "react";
 
 const Header = () => {
-  // State to handle sub-menu visibility
-  const [isSubMenuVisible, setIsSubMenuVisible] = useState(false);
-  const [selectedMenu, setSelectedMenu] = useState(null);
-
-  // Function to toggle sub-menu visibility
-  const toggleSubMenu = (menu) => {
-    if (selectedMenu === menu) {
-      // If the same menu is clicked again, close the sub-menu
-      setIsSubMenuVisible(!isSubMenuVisible);
-    } else {
-      // If a different menu is clicked, open the sub-menu
-      setIsSubMenuVisible(true);
-    }
-    setSelectedMenu(menu);
-  };
-
   return (
     <>
       <div className="bg-[#161616] flex p-4 justify-between text-center">
         <p className="text-[#f6f6f6] font-aktura text-5xl">SA</p>
-        <div className="flex space-x-4">
-          <MenuButton menu="Services" toggleSubMenu={toggleSubMenu} />
-          <MenuButton menu="About Us" toggleSubMenu={toggleSubMenu} />
-          <MenuButton menu="Gallery" toggleSubMenu={toggleSubMenu} />
-          <MenuButton menu="Contact" toggleSubMenu={toggleSubMenu} />
-        </div>
-        {/* Sub-menu */}
-        {isSubMenuVisible && (
-          <div className=" top-full left-0 mt-2 bg-[#333] p-2">
-            {selectedMenu === 'Services' && (
-              <>
-                <p className="text-[#f6f6f6]">Haircut</p>
-                <p className="text-[#f6f6f6]">Beard Trim</p>
-                <p className="text-[#f6f6f6]">Facial</p>
-                <p className="text-[#f6f6f6]">Shave</p>
-              </>
-            )}
-            {selectedMenu === 'About Us' && (
-              <>
-                <p className="text-[#f6f6f6]">Our Story</p>
-                <p className="text-[#f6f6f6]">Team</p>
-              </>
-            )}
-            {selectedMenu === 'Gallery' && (
-              <>
-                <p className="text-[#f6f6f6]">Photos</p>
-                <p className="text-[#f6f6f6]">Videos</p>
-              </>
-            )}
-            {selectedMenu === 'Contact' && (
-              <>
-                <p className="text-[#f6f6f6]">Phone</p>
-                <p className="text-[#f6f6f6]">Email</p>
-              </>
-            )}
+        <div className="flex items-center">
+          <div className="flex text-[#f6f6f6] space-x-4">
+            <MenuItem title="Haircuts">
+              <SubMenuItem title="Classic Haircut" />
+              <SubMenuItem title="Modern Styles" />
+              <SubMenuItem title="Beard Trimming" />
+            </MenuItem>
+            <MenuItem title="Coloring">
+              <SubMenuItem title="Full Color" />
+              <SubMenuItem title="Highlights" />
+              <SubMenuItem title="Gray Blending" />
+            </MenuItem>
+            <MenuItem title="Facial">
+              <SubMenuItem title="Deep Cleanse" />
+              <SubMenuItem title="Anti-Aging" />
+              <SubMenuItem title="Moisturizing" />
+            </MenuItem>
+            <MenuItem title="Packages">
+              <SubMenuItem title="Grooming Package" />
+              <SubMenuItem title="VIP Package" />
+            </MenuItem>
+            <MenuItem title="Contact Us">
+              <SubMenuItem title="Email" />
+              <SubMenuItem title="Mobile" />
+            </MenuItem>
           </div>
-        )}
+        </div>
       </div>
     </>
   );
 };
 
-// MenuButton component to simplify code for each menu item
-const MenuButton = ({ menu, toggleSubMenu }) => {
+const MenuItem = ({ title, children }) => {
   return (
-    <div
-      className="text-[#f6f6f6] font-clash text-3xl cursor-pointer transition-transform hover:scale-95 relative"
-      onClick={() => toggleSubMenu(menu)}
-    >
-      {menu}
+    <div className="group relative">
+      <p className="cursor-pointer font-aktura text-2xl py-2 px-4 block hover:bg-[#333]">
+        {title}
+      </p>
+      {children && (
+        <div className="absolute hidden space-y-2 mt-2 bg-[#161616] text-[#f6f6f6] rounded-md shadow-lg group-hover:block">
+          {children}
+        </div>
+      )}
     </div>
   );
+};
+
+const SubMenuItem = ({ title }) => {
+  return <p className="block py-2 px-4 hover:bg-[#333]">{title}</p>;
 };
 
 export default Header;
