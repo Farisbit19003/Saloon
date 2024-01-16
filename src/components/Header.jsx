@@ -47,18 +47,8 @@ const Header = () => {
     },
   ];
 
-  const renderMenuItems = (items) => {
-    return items.map((item, index) => (
-      <MenuItem
-        key={index}
-        title={item.title}
-        link={item.link}
-        id={`menu-${index}`}
-      >
-        {item.children && renderMenuItems(item.children)}
-      </MenuItem>
-    ));
-  };
+  // Convert menuData to JSON string and escape special characters
+  const menuDataJson = JSON.stringify(menuData).replace(/</g, "\\u003c");
 
   return (
     <>
@@ -72,6 +62,13 @@ const Header = () => {
           </div>
         </div>
       </div>
+
+      {/* Add a script tag to expose menuData as a global variable */}
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `window.menuData = ${menuDataJson};`,
+        }}
+      />
     </>
   );
 };
@@ -97,6 +94,19 @@ const MenuItem = ({ title, link, id, children }) => {
       </ul>
     </nav>
   );
+};
+
+const renderMenuItems = (items) => {
+  return items.map((item, index) => (
+    <MenuItem
+      key={index}
+      title={item.title}
+      link={item.link}
+      id={`menu-${index}`}
+    >
+      {item.children && renderMenuItems(item.children)}
+    </MenuItem>
+  ));
 };
 
 export default Header;
